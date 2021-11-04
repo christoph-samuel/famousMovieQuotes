@@ -14,10 +14,11 @@
     <p>{{ movie.getName }} : {{ movie.getYear }}</p>
     {% for quote in quotes %}
         {% if quote.getMovie.getId == movie.getId %}
-            <p>{{ quote.getQuote }} : {{ quote.getCharacter }}</p>
+            <p>{{ quote.getQuote }} : {{ quote.getCharacter }}
+                <a class="btn btn-danger" href="{{ path('deleteQuote', {'id': quote.getId}) }}" role="button">DELETE</a>
+            </p>
         {% endif %}
     {% endfor %}
 {% endfor %}
-
 </body>
 </html>
