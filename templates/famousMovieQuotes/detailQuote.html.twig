@@ -10,16 +10,12 @@
     <link href="/styles/style.css" rel="stylesheet">
 </head>
 <body>
-{% for movie in movies %}
-    <p>{{ movie.getName }} : {{ movie.getYear }}</p>
-    {% for quote in quotes %}
-        {% if quote.getMovie.getId == movie.getId %}
-            <p>{{ quote.getQuote }} : {{ quote.getCharacter }}
-                <a class="btn btn-danger" href="{{ path('deleteQuote', {'id': quote.getId}) }}" role="button">DELETE</a>
-                <a class="btn btn-warning" href="{{ path('detailQuote', {'id': quote.getId}) }}" role="button">EDIT</a>
-            </p>
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+<p>{{ quote.getId }}</p>
+<form method="get" action="{{ path('editQuote', {'id': quote.getId}) }}">
+    <input name="quote" value="{{ quote.getQuote }}">
+    <input name="character" value="{{ quote.getCharacter }}">
+    <input type="submit" value="edit">
+</form>
+<p>{{ quote.getMovie.getName }}</p>
 </body>
 </html>
