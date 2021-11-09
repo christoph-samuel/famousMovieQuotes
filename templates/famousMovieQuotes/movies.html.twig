@@ -10,6 +10,8 @@
     <link href="/styles/style.css" rel="stylesheet">
 </head>
 <body>
+<a class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW</a>
+{#<a class="btn btn-success" href="newQuote.html.twig" role="button">NEW</a>#}
 {% for movie in movies %}
     <p>{{ movie.getName }} : {{ movie.getYear }}</p>
     {% for quote in quotes %}
