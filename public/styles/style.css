@@ -1,0 +1,18 @@
+body {
+    background-image: url("/img/rows-red-seats-theater.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    margin: 10px;
+    min-width: max-content;
+    width: 75vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 10px 20px 50px -20px rgba(0, 0, 0, 0.8);
+}

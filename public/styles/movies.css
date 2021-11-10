@@ -1,7 +1,4 @@
 body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     padding-top: 20px;
 }
 
@@ -18,18 +15,28 @@ form {
 }
 
 
-.card {
-    margin: 10px;
-    min-width: max-content;
-    width: 75vw;
+.card:nth-of-type(1) {
+    width: 30vw;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .table {
     width: available;
 }
+
 td {
     vertical-align: middle;
 }
+
 .button {
     width: 0;
+}
+
+
+#noResults {
+    margin-top: 10vh;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-shadow: 5px 10px 8px rgba(0, 0, 0, 0.8);
 }
