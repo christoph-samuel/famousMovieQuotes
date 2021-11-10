@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#buttonNew {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+}
+
+
+.card {
+    margin: 10px;
+    min-width: max-content;
+    width: 75vw;
+}
+
+.table {
+    width: available;
+}
+td {
+    vertical-align: middle;
+}
+.button {
+    width: 0;
+}

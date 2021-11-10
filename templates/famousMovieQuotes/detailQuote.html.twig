@@ -7,15 +7,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
             crossorigin="anonymous"></script>
-    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/detailQuote.css" rel="stylesheet">
 </head>
 <body>
-<p>{{ quote.getId }}</p>
+<h1 class="h1">Edit Quote: "{{ quote.getQuote }}":</h1>
 <form method="get" action="{{ path('editQuote', {'id': quote.getId}) }}">
-    <input name="quote" value="{{ quote.getQuote }}">
-    <input name="character" value="{{ quote.getCharacter }}">
-    <input type="submit" value="edit">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Quote:</span>
+        </div>
+        <input type="text" class="form-control" name="quote" value="{{ quote.getQuote }}">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Character:</span>
+        </div>
+        <input type="text" class="form-control" name="character" value="{{ quote.getCharacter }}">
+    </div>
+    <button class="btn btn-warning" type="submit">EDIT</button>
+    <a class="btn btn-dark"
+       href="{{ path('listMovies') }}"
+       role="button">BACK</a>
 </form>
-<p>{{ quote.getMovie.getName }}</p>
+<p class="lead">Film: {{ quote.getMovie.getName }}</p>
 </body>
 </html>

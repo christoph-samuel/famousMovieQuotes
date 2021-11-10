@@ -28,7 +28,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/movies", name="listMovies")
+     * @Route("/", name="listMovies")
      */
     public function listMovies(): Response
     {

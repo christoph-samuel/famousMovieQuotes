@@ -7,21 +7,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
             crossorigin="anonymous"></script>
-    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/movies.css" rel="stylesheet">
 </head>
 <body>
-<a class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW</a>
-{#<a class="btn btn-success" href="newQuote.html.twig" role="button">NEW</a>#}
+<a id="buttonNew" class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW</a>
 {% for movie in movies %}
-    <p>{{ movie.getName }} : {{ movie.getYear }}</p>
-    {% for quote in quotes %}
-        {% if quote.getMovie.getId == movie.getId %}
-            <p>{{ quote.getQuote }} : {{ quote.getCharacter }}
-                <a class="btn btn-danger" href="{{ path('deleteQuote', {'id': quote.getId}) }}" role="button">DELETE</a>
-                <a class="btn btn-warning" href="{{ path('detailQuote', {'id': quote.getId}) }}" role="button">EDIT</a>
-            </p>
-        {% endif %}
-    {% endfor %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ movie.getName }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Erscheinungsjahr: {{ movie.getYear }}</h6>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Quote</th>
+                        <th scope="col">Character</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for quote in quotes %}
+                        {% if quote.getMovie.getId == movie.getId %}
+                            <tr>
+                                <td>"{{ quote.getQuote }}"</td>
+                                <td>{{ quote.getCharacter }}</td>
+                                <td class="button"><a class="btn btn-danger"
+                                                      href="{{ path('deleteQuote', {'id': quote.getId}) }}"
+                                                      role="button">DELETE</a></td>
+                                <td class="button"><a class="btn btn-warning"
+                                                      href="{{ path('detailQuote', {'id': quote.getId}) }}"
+                                                      role="button">EDIT</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endfor %}
 </body>
 </html>

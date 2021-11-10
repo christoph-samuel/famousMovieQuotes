@@ -7,18 +7,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
             crossorigin="anonymous"></script>
-    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/newQuote.css" rel="stylesheet">
 </head>
 <body>
+<h1 class="h1">Add new Quote:</h1>
 <form method="get" action="{{ path('addQuote') }}">
-    <label for="quote"></label>Quote: <input id="quote" name="quote">
-    <label for="character">Character: </label><input id="character" name="character">
-    <select name="movie">
-        {% for movie in movies %}
-        <option value="{{ movie.getId }}">{{ movie.getName }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="add">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Quote:</span>
+        </div>
+        <input type="text" class="form-control" name="quote">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Character:</span>
+        </div>
+        <input type="text" class="form-control" name="character">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelectFilm">Film:</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelectFilm" name="movie" required>
+            {% for movie in movies %}
+                <option value="{{ movie.getId }}">{{ movie.getName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-success" type="submit">ADD</button>
+    <a class="btn btn-dark"
+       href="{{ path('listMovies') }}"
+       role="button">BACK</a>
 </form>
 <p></p>
 </body>
