@@ -11,6 +11,13 @@
     <link href="/styles/detailQuote.css" rel="stylesheet">
 </head>
 <body>
+{% if error is defined %}
+    <div id="error" class="card bg-danger">
+        <div class="card-body">
+            <p class="text-light">{{ error }}</p>
+        </div>
+    </div>
+{% endif %}
 <div class="card">
     <div class="card-body">
         <h2 class="h2">Edit Quote: "{{ quote.getQuote }}":</h2>

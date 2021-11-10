@@ -44,9 +44,19 @@ class QuoteController extends AbstractController
      */
     public function addQuote(Request $request): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $movies = $entityManager->getRepository(Movie::class)->findAll();
+
         $newQuote = $request->get('quote');
         $newCharacter = $request->get('character');
         $movie = $request->get('movie');
+
+        if (!(strlen($newQuote) >= 3)) {
+            return $this->render('famousMovieQuotes/newQuote.html.twig', [
+                'movies' => $movies,
+                'error' => "Quote has to contain more than 3 characters!"
+            ]);
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -68,11 +78,7 @@ class QuoteController extends AbstractController
      */
     public function detailQuote(int $id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
         $quote = $this->getDoctrine()->getRepository(Quote::class)->findOneBy(['id' => $id]);
-
-        $entityManager->flush();
 
         return $this->render('famousMovieQuotes/detailQuote.html.twig', [
             'quote' => $quote
@@ -84,8 +90,17 @@ class QuoteController extends AbstractController
      */
     public function editQuote(Request $request, int $id): Response
     {
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->findOneBy(['id' => $id]);
+
         $newQuote = $request->get('quote');
         $newCharacter = $request->get('character');
+
+        if (!(strlen($newQuote) >= 3)) {
+            return $this->render('famousMovieQuotes/detailQuote.html.twig', [
+                'quote' => $quote,
+                'error' => "Quote has to contain more than 3 characters!"
+            ]);
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
 
