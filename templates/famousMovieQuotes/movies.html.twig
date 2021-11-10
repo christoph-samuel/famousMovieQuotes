@@ -11,6 +11,22 @@
 </head>
 <body>
 <a id="buttonNew" class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW</a>
+<form method="post" action="{{ path('listMovies') }}">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Search:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Movie Name..." name="search">
+    </div>
+    <button class="btn btn-light" type="submit">SEARCH</button>
+    <a class="btn btn-dark"
+       href="{{ path('listMovies') }}"
+       role="button">RESET</a>
+</form>
+{% if filteredBy is not null %}
+    <p class="lead">Filtered By: "{{ filteredBy }}"</p>
+{% endif %}
+{% if movies is iterable %}
 {% for movie in movies %}
     <div class="card">
         <div class="card-body">
@@ -45,5 +61,8 @@
         </div>
     </div>
 {% endfor %}
+{% else %}
+    <h3 class="h3">{{ movies }}</h3>
+{% endif %}
 </body>
 </html>

@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1 class="h1">Edit Quote: "{{ quote.getQuote }}":</h1>
-<form method="get" action="{{ path('editQuote', {'id': quote.getId}) }}">
+<form method="post" action="{{ path('editQuote', {'id': quote.getId}) }}">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text">Quote:</span>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Movie;
 use App\Entity\Quote;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,16 +31,32 @@ class MovieController extends AbstractController
     /**
      * @Route("/", name="listMovies")
      */
-    public function listMovies(): Response
+    public function listMovies(Request $request): Response
     {
-        $movies = $this->getDoctrine()->getRepository(Movie::class)->findAll();
+        $filteredBy = null;
+
+        if (!$search = $request->get('search')) {
+            $movies = $this->getDoctrine()->getRepository(Movie::class)->findAll();
+        } else {
+            if ($result = $this->getDoctrine()->getRepository(Movie::class)->findByName($search)) {
+                $movies = $result;
+            } else {
+                $movies = "No Results available!";
+            }
+            $filteredBy = $search;
+        }
+
         $quotes = $this->getDoctrine()->getRepository(Quote::class)->findAll();
 
-        asort($movies);
+        try {
+            asort($movies);
+        } catch (\Exception $ex) {
+        }
 
         return $this->render('famousMovieQuotes/movies.html.twig', [
             'movies' => $movies,
-            'quotes' => $quotes
+            'quotes' => $quotes,
+            'filteredBy' => $filteredBy
         ]);
     }
 }
