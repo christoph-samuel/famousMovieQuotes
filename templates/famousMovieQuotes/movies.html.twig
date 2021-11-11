@@ -11,8 +11,11 @@
     <link href="/styles/movies.css" rel="stylesheet">
 </head>
 <body>
-<a id="buttonNew" class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW</a>
-<div class="card">
+<div id="buttonNew">
+    <a class="btn btn-success" href="{{ path('newMovie') }}" role="button">NEW MOVIE</a>
+    <a class="btn btn-success" href="{{ path('newQuote') }}" role="button">NEW QUOTE</a>
+</div>
+<div id="search" class="card">
     <div class="card-body">
         <form method="post" action="{{ path('listMovies') }}">
             <div class="input-group mb-3">
@@ -36,7 +39,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ movie.getName }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Erscheinungsjahr: {{ movie.getYear }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Release-Year: {{ movie.getYear }}</h6>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-light">

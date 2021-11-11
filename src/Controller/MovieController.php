@@ -59,4 +59,48 @@ class MovieController extends AbstractController
             'filteredBy' => $filteredBy
         ]);
     }
+
+    /**
+     * @Route("/newMovie", name="newMovie")
+     */
+    public function newMovie(): Response
+    {
+        return $this->render('famousMovieQuotes/newMovie.html.twig');
+    }
+
+    /**
+     * @Route("/addMovie", name="addMovie")
+     */
+    public function addMovie(Request $request): Response
+    {
+        $newName = $request->get('name');
+        $newYear = $request->get('year');
+
+        if (!(strlen($newName) >= 1)) {
+            return $this->render('famousMovieQuotes/newMovie.html.twig', [
+                'error' => "Name has to contain at least 1 character!"
+            ]);
+        }
+        if (!($newYear <= date("Y"))) {
+            return $this->render('famousMovieQuotes/newMovie.html.twig', [
+                'error' => "Year can't be in the future!"
+            ]);
+        }
+        if (!($newYear >= 1878)) {
+            return $this->render('famousMovieQuotes/newMovie.html.twig', [
+                'error' => "In this Year there wasn't even the movie \"The Horse In Motion\" released!"
+            ]);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $movie = new Movie();
+        $movie->setName($newName);
+        $movie->setYear($newYear);
+
+        $entityManager->persist($movie);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('listMovies');
+    }
 }

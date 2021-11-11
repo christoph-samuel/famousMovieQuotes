@@ -1,0 +1,34 @@
+body {
+    padding-top: 15vh;
+}
+
+
+#error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    width: max-content;
+}
+
+#error > div > p {
+    width: 250px;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    padding-bottom: 40px;
+}
+
+form {
+    margin-bottom: 20px;
+    width: 35vw;
+    min-width: max-content;
+}
